@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* common css */
+body{
+    background: rgb(228, 234, 240);
+    min-height: 100vh;
+}
+@media screen and (max-width: 640px){
+    .select{
+        height: 2.3rem !important;
+        min-height: 2.3rem !important;
+    }
+}
