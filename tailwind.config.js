@@ -4,9 +4,6 @@ export default {
   theme: {
     extend: {
       screens: {
-        '2xs':'350px',
-        'xs':'400px',
-        '2sm':'540px',
         '2md':'900px',
       },
       colors: {
