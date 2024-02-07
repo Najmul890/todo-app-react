@@ -4,9 +4,9 @@ const initialState = {
       id: crypto.randomUUID(),
       title: "Todo One",
       description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-      created_at: "24th January 2024",
+      created_at: "8th February, 2024",
       priority: "high",
-      isComplete: false,
+      status: "incomplete",
     },
   ],
 };

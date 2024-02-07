@@ -4,11 +4,20 @@ import { TiTick } from "react-icons/ti";
 const TickIcon = ({ status }) => {
   return (
     <div
-      className={`w-5 h-5 rounded-full flex justify-center items-center ${
-        status === "complete" ? "bg-success" : "bg-danger"
+      title={
+        status === "complete"
+          ? "Click to mark as incomplete"
+          : "Click to mark as complete"
+      }
+      className={`w-5 h-5 cursor-pointer rounded-full flex justify-center items-center ${
+        status === "complete" ? "bg-success" : "border border-primary "
       } `}
     >
-      <TiTick className="text-white" />
+      <TiTick
+        className={` text-lg ${
+          status === "complete" ? "text-white" : "text-primary"
+        }`}
+      />
     </div>
   );
 };
