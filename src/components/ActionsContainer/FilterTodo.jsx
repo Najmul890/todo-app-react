@@ -1,18 +1,22 @@
+import { useContext } from "react";
+import { TodoContext } from "../../context";
+
 const FilterTodo = () => {
+  const { setPriorityFilterValue, setStatusFilterValue } = useContext(TodoContext);
   return (
     <div className="flex gap-4 mt-4 sm:mt-0 font-semibold ">
-      <select className="select w-full select-bordered text-primary focus:outline-none border-primary">
-        <option>All</option>
-        <option>Complete</option>
-        <option>Incomplete</option>
+      <select onChange={(e)=>setStatusFilterValue(e.target.value)} className="select w-full select-bordered text-primary focus:outline-none border-primary">
+        <option value="" >All</option>
+        <option value="complete" >Complete</option>
+        <option value="incomplete" >Incomplete</option>
       </select>
-      <select className="select w-full select-bordered text-primary focus:outline-none border-primary">
-        <option disabled selected>
+      <select onChange={(e)=>setPriorityFilterValue(e.target.value)} className="select w-full select-bordered text-primary focus:outline-none border-primary">
+        <option value="">
           Priority
         </option>
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option> w-full
+        <option value="high" >High</option>
+        <option value="medium" >Medium</option>
+        <option value="low" >Low</option>
       </select>
     </div>
   );

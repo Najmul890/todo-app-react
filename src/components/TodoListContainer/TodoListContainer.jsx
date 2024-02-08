@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const TodoListContainer = () => {
   const {
     state,
+    filteredTodos,
     dispatch,
     setShowTodoModal,
     setTodoAdd,
@@ -33,6 +34,7 @@ const TodoListContainer = () => {
     });
   };
 
+
   return (
     <div className="mt-10 mb-[80px] sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 ">
       {/* table heading (hidden for smaller screens) */}
@@ -45,7 +47,7 @@ const TodoListContainer = () => {
         <div className="basis-[10%] flex justify-end ">Action</div>
       </div>
       {/* table content for desktop */}
-      {state.todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <div
           key={todo.id}
           className="mt-4 hidden 2md:flex border-b py-5 border-b-primary text-primary text-sm font-medium "
@@ -102,7 +104,7 @@ const TodoListContainer = () => {
 
       {/* table content for mobile */}
       <div className="grid 2md:hidden gap-4 grid-cols-1 sm:grid-cols-2 ">
-        {state.todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <div
             key={todo.id}
             className=" flex flex-col gap-3 border rounded-lg p-5 border-primary text-primary text-sm font-medium "

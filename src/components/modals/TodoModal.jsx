@@ -14,8 +14,6 @@ const TodoModal = () => {
     setSelectedTodoToEdit,
   } = useContext(TodoContext);
 
-  console.log("sl todo", selectedTodoToEdit);
-
   const [initialFormValues, setInitialFormValues] = useState({
     title: "",
     description: "",

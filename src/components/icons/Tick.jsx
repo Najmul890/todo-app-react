@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const TickIcon = ({ id, status, dispatch }) => {
   const handleToggleComplete = () => {
+    console.log(id);
     dispatch({
       type: "TOGGLE_COMPLETE",
       payload: id,
