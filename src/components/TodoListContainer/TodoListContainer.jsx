@@ -55,83 +55,26 @@ const TodoListContainer = () => {
             <div className="basis-[10%] flex justify-end ">Action</div>
           </div>
           {/* table content for desktop */}
-          {filteredTodos.map((todo) => (
-            <div
-              key={todo.id}
-              className="mt-4 hidden 2md:flex border-b py-5 border-b-primary text-primary text-sm font-medium "
-            >
-              <div className="basis-[4%] flex justify-center  ">
-                <TickIcon
-                  id={todo.id}
-                  status={todo.status}
-                  dispatch={dispatch}
-                />
-              </div>
-              <div className="basis-[20%] ">
-                <span>{todo.title}</span>
-              </div>
-              <div className="basis-[40%]">{todo.description}</div>
-              <div className="basis-[16%] flex ml-5 lg:ml-3 xl:ml-2 items-center">
-                <div
-                  className={`inline-block px-3 py-1 capitalize text-white ${
-                    todo.priority === "high"
-                      ? "bg-success"
-                      : todo.priority === "low"
-                      ? "bg-danger"
-                      : "bg-light"
-                  } capitalize rounded-[10px]`}
-                >
-                  {todo.priority}
-                </div>
-              </div>
-              <div className="basis-[10%] flex justify-center items-center">
-                <div
-                  className={`inline-block px-3 py-1 capitalize text-white ${
-                    todo.status === "complete" ? "bg-success" : "bg-danger"
-                  } rounded-[10px]`}
-                >
-                  {todo.status}
-                </div>
-              </div>
-              <div className="basis-[10%] flex items-center gap-2 justify-end ">
-                <div
-                  onClick={() => {
-                    setSelectedTodoToEdit(todo);
-                    setShowTodoModal(true);
-                    setTodoAdd(false);
-                  }}
-                  className="cursor-pointer"
-                >
-                  <EditIcon />
-                </div>
-                <div
-                  onClick={() => handleDeleteATodo(todo.id)}
-                  className="cursor-pointer"
-                >
-                  <DeleteIcon />
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* table content for smaller devices */}
-          <div className="grid 2md:hidden gap-4 grid-cols-1 sm:grid-cols-2 ">
-            {filteredTodos.map((todo) => (
+          {filteredTodos
+            .slice()
+            .reverse()
+            .map((todo) => (
               <div
                 key={todo.id}
-                className=" flex flex-col gap-3 border rounded-lg p-5 border-primary text-primary text-sm font-medium "
+                className="mt-4 hidden 2md:flex border-b py-5 border-b-primary text-primary text-sm font-medium "
               >
-                <div className="flex items-center justify-between ">
-                  <span className="text-lg">{todo.title}</span>
+                <div className="basis-[4%] flex justify-center  ">
                   <TickIcon
                     id={todo.id}
                     status={todo.status}
                     dispatch={dispatch}
                   />
                 </div>
-
-                <div className="">{todo.description}</div>
-                <div className="">
+                <div className="basis-[20%] ">
+                  <span>{todo.title}</span>
+                </div>
+                <div className="basis-[40%]">{todo.description}</div>
+                <div className="basis-[16%] flex ml-5 lg:ml-3 xl:ml-2 items-center">
                   <div
                     className={`inline-block px-3 py-1 capitalize text-white ${
                       todo.priority === "high"
@@ -144,35 +87,98 @@ const TodoListContainer = () => {
                     {todo.priority}
                   </div>
                 </div>
-                <div className="flex justify-between mt-4 items-center gap-2">
+                <div className="basis-[10%] flex justify-center items-center">
                   <div
-                    className={`inline-block px-3 py-1 text-white ${
+                    className={`inline-block px-3 py-1 capitalize text-white ${
                       todo.status === "complete" ? "bg-success" : "bg-danger"
                     } rounded-[10px]`}
                   >
                     {todo.status}
                   </div>
-                  <div className="flex gap-2 ">
-                    <div
-                      onClick={() => {
-                        setSelectedTodoToEdit(todo);
-                        setShowTodoModal(true);
-                        setTodoAdd(false);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <EditIcon />
-                    </div>
-                    <div
-                      onClick={() => handleDeleteATodo(todo.id)}
-                      className="cursor-pointer"
-                    >
-                      <DeleteIcon />
-                    </div>
+                </div>
+                <div className="basis-[10%] flex items-center gap-2 justify-end ">
+                  <div
+                    onClick={() => {
+                      setSelectedTodoToEdit(todo);
+                      setShowTodoModal(true);
+                      setTodoAdd(false);
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <EditIcon />
+                  </div>
+                  <div
+                    onClick={() => handleDeleteATodo(todo.id)}
+                    className="cursor-pointer"
+                  >
+                    <DeleteIcon />
                   </div>
                 </div>
               </div>
             ))}
+
+          {/* table content for smaller devices */}
+          <div className="grid 2md:hidden gap-4 grid-cols-1 sm:grid-cols-2 ">
+            {filteredTodos
+              .slice()
+              .reverse()
+              .map((todo) => (
+                <div
+                  key={todo.id}
+                  className=" flex flex-col gap-3 border rounded-lg p-5 border-primary text-primary text-sm font-medium "
+                >
+                  <div className="flex items-center justify-between ">
+                    <span className="text-lg">{todo.title}</span>
+                    <TickIcon
+                      id={todo.id}
+                      status={todo.status}
+                      dispatch={dispatch}
+                    />
+                  </div>
+
+                  <div className="">{todo.description}</div>
+                  <div className="">
+                    <div
+                      className={`inline-block px-3 py-1 capitalize text-white ${
+                        todo.priority === "high"
+                          ? "bg-success"
+                          : todo.priority === "low"
+                          ? "bg-danger"
+                          : "bg-light"
+                      } capitalize rounded-[10px]`}
+                    >
+                      {todo.priority}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-4 items-center gap-2">
+                    <div
+                      className={`inline-block px-3 py-1 text-white ${
+                        todo.status === "complete" ? "bg-success" : "bg-danger"
+                      } rounded-[10px]`}
+                    >
+                      {todo.status}
+                    </div>
+                    <div className="flex gap-2 ">
+                      <div
+                        onClick={() => {
+                          setSelectedTodoToEdit(todo);
+                          setShowTodoModal(true);
+                          setTodoAdd(false);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <EditIcon />
+                      </div>
+                      <div
+                        onClick={() => handleDeleteATodo(todo.id)}
+                        className="cursor-pointer"
+                      >
+                        <DeleteIcon />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </>
       )}
