@@ -1,55 +1,54 @@
 const initialState = {
-  todos: [
-    {
-      id: crypto.randomUUID(),
-      title: "Todo One",
-      description: "Lorem ipsum, dolor sit amet consectetur.",
-      created_at: "8th February, 2024",
-      priority: "high",
-      status: "incomplete",
-    },
-  ],
+  todos: JSON.parse(localStorage.getItem("todos")) || [],
+};
+
+const saveToLocalStorage = (todos) => {
+  localStorage.setItem("todos", JSON.stringify(todos));
 };
 
 const todoReducer = (state, action) => {
+  let updatedTodos;
   switch (action.type) {
     case "ADD_TODO":
+      updatedTodos = [
+        ...state.todos,
+        { id: crypto.randomUUID(), status: "incomplete", ...action.payload },
+      ];
+      saveToLocalStorage(updatedTodos);
       return {
-        todos: [
-          ...state.todos,
-          { id: crypto.randomUUID(), status: "incomplete", ...action.payload },
-        ],
+        todos: updatedTodos,
       };
     case "EDIT_TODO":
+      updatedTodos = state.todos.map((todo) =>
+        todo.id === action.payload.id ? action.payload : todo
+      );
+      saveToLocalStorage(updatedTodos);
       return {
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload.id) {
-            return action.payload;
-          }
-          return todo;
-        }),
+        todos: updatedTodos,
       };
-
     case "TOGGLE_COMPLETE":
-      return {
-        ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload) {
-            return {
+      updatedTodos = state.todos.map((todo) =>
+        todo.id === action.payload
+          ? {
               ...todo,
               status: todo.status === "complete" ? "incomplete" : "complete",
-            };
-          } else {
-            return todo;
-          }
-        }),
-      };
-    case "DELETE_A_TODO":
+            }
+          : todo
+      );
+      saveToLocalStorage(updatedTodos);
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload),
+        todos: updatedTodos,
+      };
+    case "DELETE_A_TODO":
+      updatedTodos = state.todos.filter((todo) => todo.id !== action.payload);
+      saveToLocalStorage(updatedTodos);
+      return {
+        ...state,
+        todos: updatedTodos,
       };
     case "DELETE_ALL_TODO":
+      saveToLocalStorage([]);
       return {
         ...state,
         todos: [],
