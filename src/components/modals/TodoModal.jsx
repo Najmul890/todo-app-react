@@ -12,6 +12,9 @@ const TodoModal = () => {
     setTodoAdd,
     selectedTodoToEdit,
     setSelectedTodoToEdit,
+    setSearchParams,
+    setPriorityFilterValue,
+    setStatusFilterValue,
   } = useContext(TodoContext);
 
   const [initialFormValues, setInitialFormValues] = useState({
@@ -87,12 +90,17 @@ const TodoModal = () => {
       setSelectedTodoToEdit(null);
       setFormErrors(initialFormErrors);
       setTodoAdd(true);
+      setSearchParams("");
+      setPriorityFilterValue("");
+      setStatusFilterValue("");
       Swal.fire({
         position: "center",
         icon: "success",
-        title: todoAdd?"Your Todo has created successfully!":"Todo has updated successfully!",
+        title: todoAdd
+          ? "Your Todo has created successfully!"
+          : "Todo has updated successfully!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
     }
   };

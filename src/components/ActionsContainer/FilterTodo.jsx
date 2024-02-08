@@ -2,8 +2,13 @@ import { useContext } from "react";
 import { TodoContext } from "../../context";
 
 const FilterTodo = () => {
-  const { state, setPriorityFilterValue, setStatusFilterValue } =
-    useContext(TodoContext);
+  const {
+    state,
+    priorityFilterValue,
+    setPriorityFilterValue,
+    statusFilterValue,
+    setStatusFilterValue,
+  } = useContext(TodoContext);
   return (
     <div className="flex gap-4 mt-4 sm:mt-0 font-semibold ">
       <select
@@ -11,19 +16,36 @@ const FilterTodo = () => {
         onChange={(e) => setStatusFilterValue(e.target.value)}
         className="select w-full select-bordered text-primary focus:outline-none border-primary"
       >
-        <option value="">All</option>
-        <option value="complete">Complete</option>
-        <option value="incomplete">Incomplete</option>
+        <option selected={statusFilterValue === ""} value="">
+          All
+        </option>
+        <option selected={statusFilterValue === "complete"} value="complete">
+          Complete
+        </option>
+        <option
+          selected={statusFilterValue === "incomplete"}
+          value="incomplete"
+        >
+          Incomplete
+        </option>
       </select>
       <select
         disabled={state.todos.length === 0}
         onChange={(e) => setPriorityFilterValue(e.target.value)}
         className="select w-full select-bordered text-primary focus:outline-none border-primary"
       >
-        <option value="">Priority</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
+        <option selected={priorityFilterValue === ""} value="">
+          Priority
+        </option>
+        <option selected={priorityFilterValue === "high"} value="high">
+          High
+        </option>
+        <option selected={priorityFilterValue === "medium"} value="medium">
+          Medium
+        </option>
+        <option selected={priorityFilterValue === "low"} value="low">
+          Low
+        </option>
       </select>
     </div>
   );

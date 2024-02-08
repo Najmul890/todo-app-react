@@ -2,12 +2,13 @@ import { useContext } from "react";
 import { TodoContext } from "../../context";
 
 const SearchTodo = () => {
-  const { setSearchParams, state } = useContext(TodoContext);
+  const { searchParams, setSearchParams, state } = useContext(TodoContext);
 
   return (
     <div className="form-control w-full sm:w-1/2 ">
       <input
         disabled={state.todos.length === 0}
+        value={searchParams}
         onChange={(e) => setSearchParams(e.target.value)}
         type="text"
         placeholder="Search…"
