@@ -4,8 +4,6 @@
 
 Live Site [https://strong-pegasus-d99ecf.netlify.app/](https://strong-pegasus-d99ecf.netlify.app/)
 
-Github repository: [https://github.com/Najmul890/todo-app-react](https://github.com/Najmul890/todo-app-react)
-
 ## Project Overview
 
 - A todo app with that a user can add , edit, show, delete , delete all , also can filter todos via search params and filter value.

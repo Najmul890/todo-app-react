@@ -6,6 +6,9 @@ import { initialState, todoReducer } from "./reducers/TodoReducer";
 import { TodoContext } from "./context";
 
 function App() {
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const [todoAdd, setTodoAdd] = useState(true);
   const [selectedTodoToEdit, setSelectedTodoToEdit] = useState(null);

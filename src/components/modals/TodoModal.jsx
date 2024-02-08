@@ -114,7 +114,7 @@ const TodoModal = () => {
         className=" w-full 2md:w-1/2 bg-white shadow-lg rounded-lg p-5 "
       >
         <h2 className="mb-5 text-center text-2xl font-bold text-primary lg:mb-11 lg:text-[28px]">
-          {todoAdd ? "Add New Task" : "Edit This Task"}
+          {todoAdd ? "Add New Todo" : "Edit This Todo"}
         </h2>
         <div className="mt-3 text-lg font-medium text-primary ">
           <label className="" htmlFor="title">

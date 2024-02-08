@@ -1,5 +1,13 @@
 const initialState = {
-  todos: JSON.parse(localStorage.getItem("todos")) || [],
+  todos: JSON.parse(localStorage.getItem("todos")) || [
+    {
+      id: crypto.randomUUID(),
+      title: "Todo One",
+      description: "Lorem ipsum, dolor sit amet consectetur.",
+      priority: "high",
+      status: "incomplete",
+    },
+  ],
 };
 
 const saveToLocalStorage = (todos) => {
