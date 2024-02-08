@@ -4,6 +4,7 @@ import TickIcon from "../icons/Tick";
 import DeleteIcon from "../icons/Trash";
 import { TodoContext } from "../../context";
 import TodoModal from "../modals/TodoModal";
+import Swal from "sweetalert2";
 
 const TodoListContainer = () => {
   const {
@@ -14,7 +15,24 @@ const TodoListContainer = () => {
     selectedTodoToEdit,
     setSelectedTodoToEdit,
   } = useContext(TodoContext);
-  
+
+  const handleDeleteATodo = (id) => {
+    Swal.fire({
+      title: "Are you sure? want to delete this todo?",
+      showCancelButton: true,
+      cancelButtonText: "Yes",
+      reverseButtons: true,
+      confirmButtonText: "No",
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.cancel) {
+        dispatch({
+          type: "DELETE_A_TODO",
+          payload: id,
+        });
+      }
+    });
+  };
+
   return (
     <div className="mt-10 mb-[80px] sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 ">
       {/* table heading (hidden for smaller screens) */}
@@ -72,7 +90,12 @@ const TodoListContainer = () => {
             >
               <EditIcon />
             </div>
-            <DeleteIcon />
+            <div
+              onClick={() => handleDeleteATodo(todo.id)}
+              className="cursor-pointer"
+            >
+              <DeleteIcon />
+            </div>
           </div>
         </div>
       ))}
@@ -112,7 +135,12 @@ const TodoListContainer = () => {
                 >
                   <EditIcon />
                 </div>
-                <DeleteIcon />
+                <div
+                  onClick={() => handleDeleteATodo(todo.id)}
+                  className="cursor-pointer"
+                >
+                  <DeleteIcon />
+                </div>
               </div>
             </div>
           </div>

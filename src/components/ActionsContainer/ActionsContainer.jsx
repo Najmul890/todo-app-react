@@ -1,12 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import FilterTodo from "./FilterTodo";
 import SearchTodo from "./SearchTodo";
 import { TodoContext } from "../../context";
 import TodoModal from "../modals/TodoModal";
+import Swal from "sweetalert2";
 
 const ActionsContainer = () => {
-  const { state, todoAdd, showTodoModal, setShowTodoModal, setTodoAdd } =
-    useContext(TodoContext);
+  const { setShowTodoModal, setTodoAdd, dispatch } = useContext(TodoContext);
+
+  const handleDeleteAllTodo = () => {
+    Swal.fire({
+      title: "Are you sure? want to delete all this todo?",
+      showCancelButton: true,
+      cancelButtonText: "Yes",
+      reverseButtons: true,
+      confirmButtonText: "No",
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.cancel) {
+        dispatch({
+          type: "DELETE_ALL_TODO",
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -24,7 +40,10 @@ const ActionsContainer = () => {
           >
             Add Todo
           </button>
-          <button className="btn btn-sm bg-danger text-white hover:bg-danger ">
+          <button
+            onClick={handleDeleteAllTodo}
+            className="btn btn-sm bg-danger text-white hover:bg-danger "
+          >
             Delete All
           </button>
         </div>
@@ -33,7 +52,6 @@ const ActionsContainer = () => {
         <SearchTodo />
         <FilterTodo />
       </div>
-      {/* <AddOrEditModal /> */}
       <TodoModal />
     </div>
   );

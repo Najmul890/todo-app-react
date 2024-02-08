@@ -1,9 +1,26 @@
 import { useContext } from "react";
 import TodoModal from "../modals/TodoModal";
 import { TodoContext } from "../../context";
+import Swal from "sweetalert2";
 
 const MobileBottomActions = () => {
-  const { setShowTodoModal, setTodoAdd } = useContext(TodoContext);
+  const { setShowTodoModal, setTodoAdd, dispatch } = useContext(TodoContext);
+
+  const handleDeleteAllTodo = () => {
+    Swal.fire({
+      title: "Are you sure? want to delete all this todo?",
+      showCancelButton: true,
+      cancelButtonText: "Yes",
+      reverseButtons: true,
+      confirmButtonText: "No",
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.cancel) {
+        dispatch({
+          type: "DELETE_ALL_TODO",
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -18,7 +35,10 @@ const MobileBottomActions = () => {
           >
             Add Todo
           </button>
-          <button className="btn btn-sm bg-danger text-white hover:bg-danger ">
+          <button
+            onClick={handleDeleteAllTodo}
+            className="btn btn-sm bg-danger text-white hover:bg-danger "
+          >
             Delete All
           </button>
         </div>

@@ -8,6 +8,17 @@ body{
     min-height: 100vh;
 }
 
+.swal2-title {
+    @apply text-primary text-xl mt-0;
+  }
+  .swal2-confirm {
+    @apply bg-primary !important;
+  }
+  
+  .swal2-cancel {
+    @apply bg-[#dc3741] !important;
+  }
+
 @media screen and (max-width: 640px){
     .select{
         height: 2.3rem !important;
