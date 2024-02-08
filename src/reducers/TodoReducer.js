@@ -3,7 +3,7 @@ const initialState = {
     {
       id: crypto.randomUUID(),
       title: "Todo One",
-      description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+      description: "Lorem ipsum, dolor sit amet consectetur.",
       created_at: "8th February, 2024",
       priority: "high",
       status: "incomplete",
@@ -37,7 +37,7 @@ const todoReducer = (state, action) => {
           if (todo.id === action.payload) {
             return {
               ...todo,
-              complete: todo.status === "complete" ? "incomplete" : "complete",
+              status: todo.status === "complete" ? "incomplete" : "complete",
             };
           } else {
             return todo;

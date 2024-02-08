@@ -7,9 +7,15 @@ body{
     background: rgb(228, 234, 240);
     min-height: 100vh;
 }
+
 @media screen and (max-width: 640px){
     .select{
         height: 2.3rem !important;
         min-height: 2.3rem !important;
+    }
+}
+@media screen and (min-width: 900px){
+    .select{
+        min-width: 150px !important;
     }
 }

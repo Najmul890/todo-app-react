@@ -1,30 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import EditIcon from "../icons/EditIcon";
 import TickIcon from "../icons/Tick";
 import DeleteIcon from "../icons/Trash";
 import { TodoContext } from "../../context";
-import AddOrEditModal from "../modals/AddOrEditModal";
 import TodoModal from "../modals/TodoModal";
 
 const TodoListContainer = () => {
   const {
     state,
+    dispatch,
     setShowTodoModal,
     setTodoAdd,
     selectedTodoToEdit,
     setSelectedTodoToEdit,
   } = useContext(TodoContext);
-
-  console.log(state.todos);
-
+  
   return (
     <div className="mt-10 mb-[80px] sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 ">
       {/* table heading (hidden for smaller screens) */}
       <div className="hidden 2md:flex text-primary text-lg font-semibold ">
         <div className="basis-[4%]"></div>
-        <div className="basis-[16%]">Title</div>
-        <div className="basis-[30%]">Description</div>
-        <div className="basis-[30%]">Time Stamp</div>
+        <div className="basis-[20%]">Title</div>
+        <div className="basis-[40%]">Description</div>
+        <div className="basis-[16%]">Priority</div>
         <div className="basis-[10%]">Status</div>
         <div className="basis-[10%] flex justify-end ">Action</div>
       </div>
@@ -35,15 +33,24 @@ const TodoListContainer = () => {
           className="mt-4 hidden 2md:flex border-b py-5 border-b-primary text-primary text-sm font-medium "
         >
           <div className="basis-[4%] flex justify-center  ">
-            <TickIcon status={todo.status} />
+            <TickIcon id={todo.id} status={todo.status} dispatch={dispatch} />
           </div>
-          <div className="basis-[16%] ">
+          <div className="basis-[20%] ">
             <span>{todo.title}</span>
           </div>
-          <div className="basis-[30%]">{todo.description}</div>
-          <div className="basis-[30%]">
-            <span>Created at {todo.created_at}</span> <br />
-            <span> {selectedTodoToEdit?.title} </span>
+          <div className="basis-[40%]">{todo.description}</div>
+          <div className="basis-[16%] flex ml-5 lg:ml-3 xl:ml-2 items-center">
+            <div
+              className={`inline-block px-3 py-1 capitalize text-white ${
+                todo.priority === "high"
+                  ? "bg-success"
+                  : todo.priority === "low"
+                  ? "bg-danger"
+                  : "bg-light"
+              } capitalize rounded-[10px]`}
+            >
+              {todo.priority}
+            </div>
           </div>
           <div className="basis-[10%] flex justify-center items-center">
             <div
@@ -79,7 +86,7 @@ const TodoListContainer = () => {
           >
             <div className="flex items-center justify-between ">
               <span className="text-lg">{todo.title}</span>
-              <TickIcon status={todo.status} />
+              <TickIcon id={todo.id} status={todo.status} dispatch={dispatch} />
             </div>
 
             <div className="">{todo.description}</div>
@@ -95,7 +102,16 @@ const TodoListContainer = () => {
                 {todo.status}
               </div>
               <div className="flex gap-2 ">
-                <EditIcon />
+                <div
+                  onClick={() => {
+                    setSelectedTodoToEdit(todo);
+                    setShowTodoModal(true);
+                    setTodoAdd(false);
+                  }}
+                  className="cursor-pointer"
+                >
+                  <EditIcon />
+                </div>
                 <DeleteIcon />
               </div>
             </div>

@@ -1,9 +1,27 @@
 /* eslint-disable react/prop-types */
 import { TiTick } from "react-icons/ti";
+import Swal from "sweetalert2";
 
-const TickIcon = ({ status }) => {
+const TickIcon = ({ id, status, dispatch }) => {
+  const handleToggleComplete = () => {
+    dispatch({
+      type: "TOGGLE_COMPLETE",
+      payload: id,
+    });
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title:
+        status === "complete"
+          ? "Todo has marked as incomplete successfully!"
+          : "Todo has marked as complete successfully!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
   return (
     <div
+      onClick={handleToggleComplete}
       title={
         status === "complete"
           ? "Click to mark as incomplete"

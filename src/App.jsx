@@ -25,7 +25,7 @@ function App() {
   return (
     <TodoContext.Provider value={value}>
       <div className=" h-screen flex justify-center items-center ">
-        <div className=" bg-white h-screen sm:h-auto shadow-lg w-full sm:w-[96%] xl:w-3/4 rounded-lg py-10 px-6 xl:px-10 m-auto ">
+        <div className=" bg-white min-h-screen sm:h-auto shadow-lg w-full sm:w-[96%] xl:w-3/4 rounded-lg py-10 px-6 xl:px-10 m-auto ">
           <ActionsContainer />
           <TodoListContainer />
         </div>

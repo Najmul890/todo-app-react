@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from "react";
 import { TodoContext } from "../../context";
+import Swal from "sweetalert2";
 
 const TodoModal = () => {
   const {
@@ -88,6 +89,13 @@ const TodoModal = () => {
       setSelectedTodoToEdit(null);
       setFormErrors(initialFormErrors);
       setTodoAdd(true);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: todoAdd?"Your Todo has created successfully!":"Todo has updated successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   };
 
@@ -174,12 +182,12 @@ const TodoModal = () => {
             {todoAdd ? "Add Todo" : "Edit Todo"}
           </button>
 
-          <button
+          <div
             onClick={handleModalClose}
             className="btn bg-danger hover:bg-danger text-white "
           >
             Cancel
-          </button>
+          </div>
         </div>
       </form>
     </div>
