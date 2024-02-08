@@ -4,7 +4,8 @@ import { TodoContext } from "../../context";
 import Swal from "sweetalert2";
 
 const MobileBottomActions = () => {
-  const { setShowTodoModal, setTodoAdd, dispatch } = useContext(TodoContext);
+  const { state, setShowTodoModal, setTodoAdd, dispatch } =
+    useContext(TodoContext);
 
   const handleDeleteAllTodo = () => {
     Swal.fire({
@@ -35,12 +36,14 @@ const MobileBottomActions = () => {
           >
             Add Todo
           </button>
-          <button
-            onClick={handleDeleteAllTodo}
-            className="btn btn-sm bg-danger text-white hover:bg-danger "
-          >
-            Delete All
-          </button>
+          {state.todos.length > 1 && (
+            <button
+              onClick={handleDeleteAllTodo}
+              className="btn btn-sm bg-danger text-white hover:bg-danger "
+            >
+              Delete All
+            </button>
+          )}
         </div>
       </div>
       <TodoModal />

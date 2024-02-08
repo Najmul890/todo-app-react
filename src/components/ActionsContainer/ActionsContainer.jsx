@@ -6,7 +6,8 @@ import TodoModal from "../modals/TodoModal";
 import Swal from "sweetalert2";
 
 const ActionsContainer = () => {
-  const { setShowTodoModal, setTodoAdd, dispatch } = useContext(TodoContext);
+  const { state, setShowTodoModal, setTodoAdd, dispatch } =
+    useContext(TodoContext);
 
   const handleDeleteAllTodo = () => {
     Swal.fire({
@@ -40,12 +41,14 @@ const ActionsContainer = () => {
           >
             Add Todo
           </button>
-          <button
-            onClick={handleDeleteAllTodo}
-            className="btn btn-sm bg-danger text-white hover:bg-danger "
-          >
-            Delete All
-          </button>
+          {state.todos.length > 1 && (
+            <button
+              onClick={handleDeleteAllTodo}
+              className="btn btn-sm bg-danger text-white hover:bg-danger "
+            >
+              Delete All
+            </button>
+          )}
         </div>
       </div>
       <div className=" flex flex-col sm:flex-row justify-between mt-5 sm:mt-[60px]">
