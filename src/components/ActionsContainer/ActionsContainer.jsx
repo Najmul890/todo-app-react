@@ -25,6 +25,8 @@ const ActionsContainer = () => {
     });
   };
 
+  const completedTodos = state.todos.filter((todo)=>todo.status==="complete");
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between items-center  ">
@@ -49,6 +51,14 @@ const ActionsContainer = () => {
               Delete All
             </button>
           )}
+        </div>
+      </div>
+      <div className=" mt-4 flex justify-end gap-4 ">
+        <div className="bg-light rounded-full px-3 py-0.5 text-white text-sm font-semibold ">
+          Total: {state.todos.length}
+        </div>
+        <div className="bg-success rounded-full px-3 py-0.5 text-white text-sm font-semibold ">
+          Completed: {completedTodos.length}
         </div>
       </div>
       <div className=" flex flex-col sm:flex-row justify-between mt-5 sm:mt-[60px]">
