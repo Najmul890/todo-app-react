@@ -1,11 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import EditIcon from "../icons/EditIcon";
 import TickIcon from "../icons/Tick";
 import DeleteIcon from "../icons/Trash";
 import { TodoContext } from "../../context";
+import AddOrEditModal from "../modals/AddOrEditModal";
+import TodoModal from "../modals/TodoModal";
 
 const TodoListContainer = () => {
-  const { state } = useContext(TodoContext);
+  const {
+    state,
+    setShowTodoModal,
+    setTodoAdd,
+    selectedTodoToEdit,
+    setSelectedTodoToEdit,
+  } = useContext(TodoContext);
+
+  console.log(state.todos);
 
   return (
     <div className="mt-10 mb-[80px] sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 ">
@@ -33,6 +43,7 @@ const TodoListContainer = () => {
           <div className="basis-[30%]">{todo.description}</div>
           <div className="basis-[30%]">
             <span>Created at {todo.created_at}</span> <br />
+            <span> {selectedTodoToEdit?.title} </span>
           </div>
           <div className="basis-[10%] flex justify-center items-center">
             <div
@@ -44,7 +55,16 @@ const TodoListContainer = () => {
             </div>
           </div>
           <div className="basis-[10%] flex items-center gap-2 justify-end ">
-            <EditIcon />
+            <div
+              onClick={() => {
+                setSelectedTodoToEdit(todo);
+                setShowTodoModal(true);
+                setTodoAdd(false);
+              }}
+              className="cursor-pointer"
+            >
+              <EditIcon />
+            </div>
             <DeleteIcon />
           </div>
         </div>
@@ -82,6 +102,7 @@ const TodoListContainer = () => {
           </div>
         ))}
       </div>
+      <TodoModal selectedTodoToEdit={selectedTodoToEdit} />
     </div>
   );
 };

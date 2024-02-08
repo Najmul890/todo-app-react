@@ -17,7 +17,7 @@ const todoReducer = (state, action) => {
       return {
         todos: [
           ...state.todos,
-          { id: crypto.randomUUID(), isFavorite: false, ...action.payload },
+          { id: crypto.randomUUID(), status: "incomplete", ...action.payload },
         ],
       };
     case "EDIT_TODO":
@@ -35,7 +35,10 @@ const todoReducer = (state, action) => {
         ...state,
         todos: state.todos.map((todo) => {
           if (todo.id === action.payload) {
-            return { ...todo, isFavorite: !todo.isFavorite };
+            return {
+              ...todo,
+              complete: todo.status === "complete" ? "incomplete" : "complete",
+            };
           } else {
             return todo;
           }
