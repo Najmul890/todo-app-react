@@ -8,6 +8,7 @@ const MobileBottomActions = () => {
     useContext(TodoContext);
 
   const handleDeleteAllTodo = () => {
+    // before deleting all todos , confirm from user , if confirmed then perform delete action and show the success alert
     Swal.fire({
       title: "Are you sure? want to delete all this todo?",
       showCancelButton: true,

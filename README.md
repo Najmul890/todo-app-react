@@ -20,3 +20,4 @@ Live Site [https://strong-pegasus-d99ecf.netlify.app/](https://strong-pegasus-d9
 - React (Context Api, useReducer hook, useState, useEffect)
 - Tailwind css
 - Local Storage
+- swal2 library used for showing alert , if any action success and before delete a todo or all todo , to show confirm alert

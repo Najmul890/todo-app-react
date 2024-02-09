@@ -10,6 +10,7 @@ const ActionsContainer = () => {
     useContext(TodoContext);
 
   const handleDeleteAllTodo = () => {
+    // before deleting all todos , confirm from user , if confirmed then perform delete action and show the success alert
     Swal.fire({
       title: "Are you sure? want to delete all this todo?",
       showCancelButton: true,
@@ -32,6 +33,7 @@ const ActionsContainer = () => {
     });
   };
 
+  // counting number of completed todos via reduce method
   const completedTodos = state.todos.reduce((numberOfCompletedTodos, todo) => {
     return todo.status === "complete"
       ? numberOfCompletedTodos + 1
@@ -76,6 +78,7 @@ const ActionsContainer = () => {
         <SearchTodo />
         <FilterTodo />
       </div>
+      {/* if add todo btn clicked by a user then the todo modal will be open with a form to perform add a todo */}
       <TodoModal />
     </div>
   );

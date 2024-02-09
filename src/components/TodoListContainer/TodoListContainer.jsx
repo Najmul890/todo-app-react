@@ -19,6 +19,7 @@ const TodoListContainer = () => {
   } = useContext(TodoContext);
 
   const handleDeleteATodo = (id) => {
+    // before deleting a todo , confirm from user , if confirmed then perform delete action and show the success alert
     Swal.fire({
       title: "Are you sure? want to delete this todo?",
       showCancelButton: true,
@@ -70,7 +71,7 @@ const TodoListContainer = () => {
                 key={todo.id}
                 className="mt-4 hidden 2md:flex border-b py-5 border-b-primary text-primary text-sm font-medium "
               >
-                <div className="basis-[4%] flex justify-center  ">
+                <div className="basis-[4%] flex justify-center">
                   <TickIcon
                     id={todo.id}
                     status={todo.status}
@@ -193,6 +194,7 @@ const TodoListContainer = () => {
           </div>
         </>
       )}
+      {/* if edit btn clicked in a todo item by a user then the todo modal will be open with a form to perform edit the todo */}
       <TodoModal selectedTodoToEdit={selectedTodoToEdit} />
     </div>
   );

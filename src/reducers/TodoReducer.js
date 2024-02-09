@@ -1,15 +1,17 @@
 const initialState = {
+  // initial state is set with a static todo and if there is any todos list with key todos in local storage that array will set as initial state
   todos: JSON.parse(localStorage.getItem("todos")) || [
     {
       id: crypto.randomUUID(),
       title: "Todo One",
       description: "Lorem ipsum, dolor sit amet consectetur.",
       priority: "high",
-      status: "incomplete",
+      status: "complete",
     },
   ],
 };
 
+// a reuseable function to store updated todo list in local storage
 const saveToLocalStorage = (todos) => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };

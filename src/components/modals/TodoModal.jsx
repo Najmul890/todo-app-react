@@ -31,6 +31,7 @@ const TodoModal = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
+  // if the modal open for edit a todo then the initial form values is updated with selected todo info which will need to update
   useEffect(() => {
     if (selectedTodoToEdit) {
       setInitialFormValues({
@@ -41,10 +42,12 @@ const TodoModal = () => {
     }
   }, [selectedTodoToEdit]);
 
+  // setting form values if initial form values update
   useEffect(() => {
     setFormValues(initialFormValues);
   }, [initialFormValues]);
 
+// here setting form errors and form values while onchange a field and update the states with their specific name field
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
     setFormErrors({ ...formErrors, [name]: "" });
@@ -54,7 +57,8 @@ const TodoModal = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    console.log(formValues);
+    
+    // here setting form errors for specific field if field value is empty
     for (const field in formValues) {
       if (formValues[field]?.trim() === "") {
         errors[field] = `${
@@ -70,6 +74,8 @@ const TodoModal = () => {
       description: formValues.description,
       priority: formValues.priority,
     };
+
+    // if no form errors then perform add or edit a todo
     if (Object.keys(errors).length === 0) {
       dispatch({
         type: todoAdd ? "ADD_TODO" : "EDIT_TODO",
@@ -93,6 +99,8 @@ const TodoModal = () => {
       setSearchParams("");
       setPriorityFilterValue("");
       setStatusFilterValue("");
+
+      {/* showing success alert after add or edit a todo */}
       Swal.fire({
         position: "center",
         icon: "success",
@@ -105,6 +113,7 @@ const TodoModal = () => {
     }
   };
 
+  // if a user close the modal instead perform add or edit a todo handleModalClose function close the modal set other states with their initial value
   const handleModalClose = () => {
     setShowTodoModal(false);
     setFormErrors(initialFormErrors);
