@@ -25,7 +25,11 @@ const ActionsContainer = () => {
     });
   };
 
-  const completedTodos = state.todos.filter((todo)=>todo.status==="complete");
+  const completedTodos = state.todos.reduce((numberOfCompletedTodos, todo) => {
+    return todo.status === "complete"
+      ? numberOfCompletedTodos + 1
+      : numberOfCompletedTodos;
+  }, 0);
 
   return (
     <div>
@@ -58,7 +62,7 @@ const ActionsContainer = () => {
           Total: {state.todos.length}
         </div>
         <div className="bg-success rounded-full px-3 py-0.5 text-white text-sm font-semibold ">
-          Completed: {completedTodos.length}
+          Completed: {completedTodos}
         </div>
       </div>
       <div className=" flex flex-col sm:flex-row justify-between mt-5 sm:mt-[60px]">
