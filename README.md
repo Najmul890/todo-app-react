@@ -15,7 +15,7 @@ Live Site [https://strong-pegasus-d99ecf.netlify.app/](https://strong-pegasus-d9
 - Have warning before delete a todo or all todo.
 - Used no data found component if filter not match or list is empty.
 
-## Technology Used for client side
+## Technology Used
 
 - React (Context Api, useReducer hook, useState, useEffect)
 - Tailwind css
