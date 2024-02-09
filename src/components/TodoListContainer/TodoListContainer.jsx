@@ -31,6 +31,13 @@ const TodoListContainer = () => {
           type: "DELETE_A_TODO",
           payload: id,
         });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully deleted the todo!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   };

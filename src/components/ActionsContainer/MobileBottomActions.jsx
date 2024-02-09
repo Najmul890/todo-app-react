@@ -19,6 +19,13 @@ const MobileBottomActions = () => {
         dispatch({
           type: "DELETE_ALL_TODO",
         });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully deleted all the todos!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   };
