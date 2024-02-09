@@ -97,16 +97,18 @@ const TodoListContainer = () => {
                   </div>
                 </div>
                 <div className="basis-[10%] flex items-center gap-2 justify-end ">
-                  <div
-                    onClick={() => {
-                      setSelectedTodoToEdit(todo);
-                      setShowTodoModal(true);
-                      setTodoAdd(false);
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <EditIcon />
-                  </div>
+                  {todo.status === "incomplete" && (
+                    <div
+                      onClick={() => {
+                        setSelectedTodoToEdit(todo);
+                        setShowTodoModal(true);
+                        setTodoAdd(false);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      <EditIcon />
+                    </div>
+                  )}
                   <div
                     onClick={() => handleDeleteATodo(todo.id)}
                     className="cursor-pointer"
@@ -159,16 +161,18 @@ const TodoListContainer = () => {
                       {todo.status}
                     </div>
                     <div className="flex gap-2 ">
-                      <div
-                        onClick={() => {
-                          setSelectedTodoToEdit(todo);
-                          setShowTodoModal(true);
-                          setTodoAdd(false);
-                        }}
-                        className="cursor-pointer"
-                      >
-                        <EditIcon />
-                      </div>
+                      {todo.status === "incomplete" && (
+                        <div
+                          onClick={() => {
+                            setSelectedTodoToEdit(todo);
+                            setShowTodoModal(true);
+                            setTodoAdd(false);
+                          }}
+                          className="cursor-pointer"
+                        >
+                          <EditIcon />
+                        </div>
+                      )}
                       <div
                         onClick={() => handleDeleteATodo(todo.id)}
                         className="cursor-pointer"
