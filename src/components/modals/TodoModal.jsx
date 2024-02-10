@@ -124,7 +124,7 @@ const TodoModal = () => {
     <div
       className={`bg-white ${
         showTodoModal ? " flex justify-center items-center " : "hidden"
-      } bg-opacity-70 h-screen 2md:h-auto py-0 2md:py-10 w-full z-20 absolute top-0 left-0 max-md:px-4 lg:text-lg`}
+      } bg-opacity-70 min-h-screen py-0 2md:py-10 w-full z-20 absolute top-0 left-0 max-md:px-4 lg:text-lg`}
     >
       <form
         onSubmit={handleFormSubmit}

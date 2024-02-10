@@ -12,6 +12,7 @@ const TodoListContainer = () => {
     state,
     filteredTodos,
     dispatch,
+    showTodoModal,
     setShowTodoModal,
     setTodoAdd,
     selectedTodoToEdit,
@@ -44,7 +45,7 @@ const TodoListContainer = () => {
   };
 
   return (
-    <div className="mt-10 mb-[80px] sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 ">
+    <div className={`mt-10 mb-[80px] ${showTodoModal?"hidden":"block"} sm:mb-0 border-none 2md:border border-primary rounded-lg p-0 2md:p-5 `}>
       {filteredTodos.length === 0 ? (
         <NotFound>
           {state.todos.length === 0
